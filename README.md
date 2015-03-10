@@ -21,7 +21,7 @@ You can do a **lot** with those skills.
 
 Find an actual SQL tutorial [here](https://github.com/tthibo/SQL-Tutorial).
 It's good.
-Note for nerds: SQLite is a bit of a speciality flavor of SQL.  Kind of like chunky monkey.  Not for everybody, but it suites this exercise well because it has no configuration or permissions to deal with and is small.
+Note for nerds: SQLite is a bit of a specialty flavor of SQL.  Kind of like chunky monkey.  Not for everybody, but it suites this exercise well because it has no configuration or permissions to deal with and is small.
 
 ## inputs
 
@@ -42,7 +42,7 @@ Luckily our inputs under the data folder do already!
     1. there is an ID column with unique identifiers for all of the rows in the table. Preferably it's the first column!
   1. no cases of [delimiter collision](https://en.wikipedia.org/wiki/Delimiter#Delimiter_collision)
     1. for example, if your input is CSV, then every time you see a comma it better mean there's a new column immediately to the right.
-      1. it's ok to not follow this rule if your delimiters are properly escaped, for example the offending "cell" is surrounded by double quotes
+      1. it's OK to not follow this rule if your delimiters are properly escaped, for example the offending "cell" is surrounded by double quotes
   1. character encoded as [UTF-8](https://en.wikipedia.org/wiki/UTF-8)
 
 See examples of what **not** to do [here](http://okfnlabs.org/bad-data/).
@@ -52,7 +52,7 @@ See examples of what **not** to do [here](http://okfnlabs.org/bad-data/).
 1. Go to [sqlitebrowser.org](http://sqlitebrowser.org/) and download the right executable for your operating system. Should be .exe for Windows and .dmg for Mac.
 1. install it!
 1. open it!
-1. now follow our screenshots.  we'll be using AidData's geocoded World Bank development aid research release.
+1. now follow our screen shots.  we'll be using AidData's geocoded World Bank development aid research release.
   1. the original data can be found [here](http://aiddata.org/geocoded-datasets).
   1. find these three tables as tab separated values (TSV) under our data folder.
 1. follow along with the pictures!  good luck and happy querying.
@@ -72,7 +72,7 @@ You can see your useless new table in the Database Structure tab.
 ![](img/2015-03-10_16_14_46.png)
 Let's import a table we actually care about!
 ![](img/2015-03-10_16_18_25.png)
-You'll get interuppted when you try to import. Go ahead and save that useless table. It'll be gone soon but whatever.
+You'll get interrupted when you try to import. Go ahead and save that useless table. It'll be gone soon but whatever.
 ![](img/2015-03-10_16_19_10.png)
 OK, back to importing a table that __matters__. Go to this repo's folder and navigate to the data folder, or download the raw data from github directly.
 ![](img/2015-03-10_16_19_35.png)
@@ -86,13 +86,13 @@ Just like it Excel, go ahead and drag out your columns to be wider and give them
 ![](img/2015-03-10_16_22_09.png)
 Name this table "projects" after the input.
 ![](img/2015-03-10_16_22_21.png)
-Delete that pesky starter table. This is not necessary when doing SQL at the command line, or in some other graphical systems. Just a quirk of this particular program.
+Delete that pesky starter table. Making it in the first place is not necessary when doing SQL at the command line, or in some other graphical systems. Just a quirk of this particular program.
 ![](img/2015-03-10_16_47_05.png)
-Back in the Database Structure tab, expand your projects table to look at all the columns. We didn't specify data types (like TEXT, NUMERIC) but that's ok for now.
+Back in the Database Structure tab, expand your projects table to look at all the columns. We didn't specify data types (like TEXT, NUMERIC) but that's OK for now.
 ![](img/2015-03-10_16_47_18.png)
 Go over to the Browse tab to get a look at the data in this table.
 ![](img/2015-03-10_16_47_31.png)
-Now it's time to learn SQL **for real**.  You may have used it before without knowing, like in ArcGIS's "select by attributes."  SQL is easy!  This statement just says "show me the first 10 project_id column values from the projects table that you find whose country is Cambodia."
+Now it's time to learn SQL **for real**.  You may have used it before without knowing, like in ArcGIS's "select by attributes."  SQL is easy!  The statement shown in the picture below just says "show me the first 10 project_id column values from the projects table that you find whose country is Cambodia."
 Check out the output in the "Data returned" box below.
 Here's the actual SQL, written in a more legible style:
 
@@ -111,10 +111,10 @@ Notice that SQL is typically written with commands in capital letters to disting
 A few tricky things here:
 
 * the order of clauses matters
-  * for example, thr WHERE clause must come after the FROM clause
+  * for example, the WHERE clause must come after the FROM clause
 * values that come from your data are typically quoted, like 'Cambodia'
 * you really do need a ';' at the end
-  * software that lets you not put the ';' at the end just promotes bad habits. this is the programming equivelent of not brushing your teeth before bed.
+  * software that lets you not put the ';' at the end just promotes bad habits. this is the programming equivalent of not brushing your teeth before bed.
 ![](img/2015-03-10_16_49_07.png)
 
 ![](img/2015-03-10_16_49_32.png)
