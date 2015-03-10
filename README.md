@@ -57,6 +57,7 @@ See examples of what **not** to do [here](http://okfnlabs.org/bad-data/).
 1. Go to [sqlitebrowser.org](http://sqlitebrowser.org/) and download the right executable for your operating system. Should be .exe for Windows and .dmg for Mac.
 1. install it!
 1. open it!
-1. now follow our screenshots above.  we'll be using AidData's Nepal research release.
+1. now follow our screenshots above.  we'll be using AidData's geocoded World Bank development aid research release.
   1. the original data can be found [here](http://aiddata.org/geocoded-datasets).
   1. find these three tables as tab separated values (TSV) under our data folder.
+1. and follow along with the pictures above!  good luck and happy querying
