@@ -27,13 +27,15 @@ Note for nerds: SQLite is a bit of a speciality flavor of SQL.  Kind of like chu
 
 SQL is the easy part.
 It can be hard to prepare your input tables before you even get them into your database.
-All the cool kids make sure that their input tables meet these conditions:
+All the cool kids make sure that their input tables meet the following conditions.
+Luckily our inputs under the data folder do already!
 
   1. [machine readable](http://webarchive.okfn.org/okfn.org/201404/opendata/glossary/#machine-readable)
     1. start with plain text. A PDF is not a machine readable table!  HTML is not a machine readable table! XLS is not a machine readable table! 
       1. hint: save .xls and .xlsx as CSV
     1. the whole input file is just a single table
-    1. the first line is a header with the name of each column
+    1. the first line has the name of each column, and nothing else.
+      1. this is called a header.  there is only one header line (no merge cells allowed!)
     1. each column has a name, and no name is repeated
     1. each column has internally consistent contents
       1. for example, don't put commas, periods, or '$' in columns that have amounts of money. It's for numbers!
@@ -50,47 +52,47 @@ See examples of what **not** to do [here](http://okfnlabs.org/bad-data/).
 1. Go to [sqlitebrowser.org](http://sqlitebrowser.org/) and download the right executable for your operating system. Should be .exe for Windows and .dmg for Mac.
 1. install it!
 1. open it!
-1. now follow our screenshots above.  we'll be using AidData's geocoded World Bank development aid research release.
+1. now follow our screenshots.  we'll be using AidData's geocoded World Bank development aid research release.
   1. the original data can be found [here](http://aiddata.org/geocoded-datasets).
   1. find these three tables as tab separated values (TSV) under our data folder.
-1. and follow along with the pictures!  good luck and happy querying.
+1. follow along with the pictures!  good luck and happy querying.
 
 
 # the good stuff - pictures
 
-![](img/2015-03-10_16_21_11.png)
-![](img/2015-03-10_16_20_47.png)
-![](img/2015-03-10_16_58_48.png)
-![](img/2015-03-10_16_47_31.png)
-![](img/2015-03-10_16_18_25.png)
-![](img/2015-03-10_17_06_01.png)
-![](img/2015-03-10_16_12_12.png)
-![](img/2015-03-10_16_19_35.png)
-![](img/2015-03-10_16_07_49.png)
-![](img/2015-03-10_16_53_16.png)
-![](img/2015-03-10_16_54_09.png)
-![](img/2015-03-10_16_22_09.png)
-![](img/2015-03-10_17_05_07.png)
-![](img/2015-03-10_17_28_38.png)
-![](img/2015-03-10_16_47_05.png)
-![](img/2015-03-10_16_14_35.png)
-![](img/2015-03-10_16_21_29.png)
-![](img/2015-03-10_16_22_21.png)
-![](img/2015-03-10_16_53_46.png)
-![](img/2015-03-10_16_55_47.png)
-![](img/2015-03-10_17_16_53.png)
-![](img/2015-03-10_16_49_32.png)
-![](img/2015-03-10_16_14_46.png)
-![](img/2015-03-10_17_15_46.png)
-![](img/2015-03-10_16_50_09.png)
-![](img/2015-03-10_16_19_10.png)
-![](img/2015-03-10_16_58_20.png)
-![](img/2015-03-10_16_49_07.png)
-![](img/2015-03-10_17_39_05.png)
-![](img/2015-03-10_16_47_18.png)
-![](img/2015-03-10_17_29_58.png)
 ![](img/2015-03-10_16_07_12.png)
+![](img/2015-03-10_16_07_49.png)
+![](img/2015-03-10_16_12_12.png)
+![](img/2015-03-10_16_14_35.png)
+![](img/2015-03-10_16_14_46.png)
+![](img/2015-03-10_16_18_25.png)
+![](img/2015-03-10_16_19_10.png)
+![](img/2015-03-10_16_19_35.png)
+![](img/2015-03-10_16_20_47.png)
+![](img/2015-03-10_16_21_11.png)
+![](img/2015-03-10_16_21_29.png)
+![](img/2015-03-10_16_22_09.png)
+![](img/2015-03-10_16_22_21.png)
+![](img/2015-03-10_16_47_05.png)
+![](img/2015-03-10_16_47_18.png)
+![](img/2015-03-10_16_47_31.png)
+![](img/2015-03-10_16_49_07.png)
+![](img/2015-03-10_16_49_32.png)
 ![](img/2015-03-10_16_49_51.png)
+![](img/2015-03-10_16_50_09.png)
+![](img/2015-03-10_16_53_16.png)
+![](img/2015-03-10_16_53_46.png)
+![](img/2015-03-10_16_54_09.png)
+![](img/2015-03-10_16_55_47.png)
+![](img/2015-03-10_16_58_20.png)
+![](img/2015-03-10_16_58_48.png)
+![](img/2015-03-10_17_05_07.png)
+![](img/2015-03-10_17_06_01.png)
+![](img/2015-03-10_17_15_46.png)
+![](img/2015-03-10_17_16_53.png)
+![](img/2015-03-10_17_28_38.png)
+![](img/2015-03-10_17_29_58.png)
+![](img/2015-03-10_17_39_05.png)
 
 ```SQL
 SELECT
