@@ -6,6 +6,13 @@ It's almost English.
 It's like Excel but **easier** and **better**.
 You're about to learn it.
 
+# the good stuff - pictures
+
+### we'll get around to [the wordy part](#the-wordy-part) later
+
+# the wordy part
+
+
 The basic SQL workflow is:
 
 1. get a [CSV](https://en.wikipedia.org/wiki/Comma-separated_values), TSV, or other [plain text](https://en.wikipedia.org/wiki/Plain_text) table
@@ -47,9 +54,5 @@ See examples of what **not** to do [here](http://okfnlabs.org/bad-data/).
 1. Go to [sqlitebrowser.org](http://sqlitebrowser.org/) and download the right executable for your operating system. Should be .exe for Windows and .dmg for Mac.
 1. install it!
 1. open it!
-1. now for screenshots.  we'll be using AidData's Nepal research release.
+1. now follow our screenshots above.  we'll be using AidData's Nepal research release.
   1. find these three tables as tab separated values (TSV) under our data folder.
-
-
-
-
