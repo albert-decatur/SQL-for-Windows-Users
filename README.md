@@ -3,7 +3,7 @@
 
 SQL is a query language for tables.
 It's almost English.
-It's like Excel but **easier** and **better**.
+It's like Excel but with SQL it's **easier** to do multi-step tasks, and SQL is much **better** at handling larger datasets.
 You're about to learn it.
 
 # the wordy part
