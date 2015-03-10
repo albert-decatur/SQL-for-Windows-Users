@@ -8,7 +8,10 @@ You're about to learn it.
 
 # the good stuff - pictures
 
-### we'll get around to [the wordy part](#the-wordy-part) later
+#### we'll get around to [the wordy part](#the-wordy-part) later
+
+#### OK but how do I actually get started?  that's why we have . . .
+
 
 # the wordy part
 
@@ -55,4 +58,5 @@ See examples of what **not** to do [here](http://okfnlabs.org/bad-data/).
 1. install it!
 1. open it!
 1. now follow our screenshots above.  we'll be using AidData's Nepal research release.
+  1. the original data can be found [here](http://aiddata.org/geocoded-datasets).
   1. find these three tables as tab separated values (TSV) under our data folder.
