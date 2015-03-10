@@ -29,6 +29,7 @@ You can do a **lot** with those skills.
 
 Find an actual SQL tutorial [here](https://github.com/tthibo/SQL-Tutorial).
 It's good.
+Note for nerds: SQLite is a bit of a speciality flavor of SQL.  Kind of like chunky monkey.  Not for everybody, but it suites this exercise well because it has no configuration or permissions to deal with and is small.
 
 ## inputs
 
@@ -60,4 +61,9 @@ See examples of what **not** to do [here](http://okfnlabs.org/bad-data/).
 1. now follow our screenshots above.  we'll be using AidData's geocoded World Bank development aid research release.
   1. the original data can be found [here](http://aiddata.org/geocoded-datasets).
   1. find these three tables as tab separated values (TSV) under our data folder.
-1. and follow along with the pictures above!  good luck and happy querying
+1. and follow along with the pictures above!  good luck and happy querying.
+
+## tidbits
+
+* what's another amazing way to easily join plain text tables and do so much more?
+  * answer: [CSVKit](https://csvkit.readthedocs.org/en/0.9.0/)
