@@ -8,6 +8,54 @@ You're about to learn it.
 
 # the good stuff - pictures
 
+```SQL
+SELECT
+	p.status,
+	sum(t.transaction_value) as sum_commitments_USD_2011
+FROM
+	projects as p
+	INNER JOIN transactions as t
+	ON p.project_id = t.project_id
+WHERE
+	p.country = 'Cambodia'
+	AND t.transaction_value_code = 'C'
+GROUP BY
+	p.status;
+
+```
+
+```SQL
+SELECT
+	p.status,
+	sum(t.transaction_value) as sum_commitments_USD_2011
+FROM
+	projects as p
+	INNER JOIN transactions as t
+	ON p.project_id = t.project_id
+WHERE
+	p.country = 'Cambodia'
+	AND t.transaction_value_code = 'C'
+	AND p.sector_value LIKE '%health%'
+GROUP BY
+	p.status;
+```
+
+```SQL
+SELECT
+	p.project_id,
+	p.country,
+	p.project_title,
+	t.transaction_isodate,
+	t.transaction_value
+FROM
+	projects as p
+	INNER JOIN transactions as t
+	ON p.project_id = t.project_id
+ORDER BY
+	t.transaction_value DESC
+LIMIT 10;
+```
+
 #### we'll get around to [the wordy part](#the-wordy-part) later
 
 #### OK but how do I actually get started?  that's why we have . . .
