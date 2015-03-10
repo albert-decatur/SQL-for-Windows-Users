@@ -60,7 +60,7 @@ See examples of what **not** to do [here](http://okfnlabs.org/bad-data/).
 
 # the good stuff - pictures
 
-![](img/2015-03-10_16_07_12.png)
+![example](img/2015-03-10_16_07_12.png)
 ![](img/2015-03-10_16_07_49.png)
 ![](img/2015-03-10_16_12_12.png)
 ![](img/2015-03-10_16_14_35.png)
