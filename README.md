@@ -62,36 +62,67 @@ See examples of what **not** to do [here](http://okfnlabs.org/bad-data/).
 
 open SQLite Database Browser
 ![](img/2015-03-10_16_07_12.png)
+
 Make a new database - pick a location to save it in.  Use the extension ".sqlite".
+
 ![](img/2015-03-10_16_07_49.png)
+
 New databases need at least one table. We're not ready to make one yet so we'll just fake it and get rid of this one later.
+
 ![](img/2015-03-10_16_12_12.png)
+
 New tables need at least one column.  We'll fake this too.
+
 ![](img/2015-03-10_16_14_35.png)
+
 You can see your useless new table in the Database Structure tab.
+
 ![](img/2015-03-10_16_14_46.png)
+
 Let's import a table we actually care about!
+
 ![](img/2015-03-10_16_18_25.png)
+
 You'll get interrupted when you try to import. Go ahead and save that useless table. It'll be gone soon but whatever.
+
 ![](img/2015-03-10_16_19_10.png)
+
 OK, back to importing a table that __matters__. Go to this repo's folder and navigate to the data folder, or download the raw data from github directly.
+
 ![](img/2015-03-10_16_19_35.png)
+
 Choose the projects.txt table to start. This is a plain text, machine readable table like we talked about earlier.
+
 ![](img/2015-03-10_16_20_47.png)
+
 At first it will look like the table is broken.  That's because the default column delimiter is assumed to be commas.  Just change it to tabs.
+
 ![](img/2015-03-10_16_21_11.png)
+
 That looks much better! Also, extract field names from the header.  That's the first line of the plain text table we're importing.
+
 ![](img/2015-03-10_16_21_29.png)
+
 Just like it Excel, go ahead and drag out your columns to be wider and give them a look, or double click the column divider lines to do it automatically. Get a sense for your data!
+
 ![](img/2015-03-10_16_22_09.png)
+
 Name this table "projects" after the input.
+
 ![](img/2015-03-10_16_22_21.png)
+
 Delete that pesky starter table. Making it in the first place is not necessary when doing SQL at the command line, or in some other graphical systems. Just a quirk of this particular program.
+
 ![](img/2015-03-10_16_47_05.png)
+
 Back in the Database Structure tab, expand your projects table to look at all the columns. We didn't specify data types (like TEXT, NUMERIC) but that's OK for now.
+
 ![](img/2015-03-10_16_47_18.png)
+
 Go over to the Browse tab to get a look at the data in this table.
+
 ![](img/2015-03-10_16_47_31.png)
+
 Now it's time to learn SQL **for real**.  You may have used it before without knowing, like in ArcGIS's "select by attributes."  SQL is easy!  The statement shown in the picture below just says "show me the first 10 project_id column values from the projects table that you find whose country is Cambodia."
 Check out the output in the "Data returned" box below.
 Here's the actual SQL, written in a more legible style:
@@ -115,6 +146,7 @@ A few tricky things here:
 * values that come from your data are typically quoted, like 'Cambodia'
 * you really do need a ';' at the end
   * software that lets you not put the ';' at the end just promotes bad habits. this is the programming equivalent of not brushing your teeth before bed.
+
 ![](img/2015-03-10_16_49_07.png)
 
 ![](img/2015-03-10_16_49_32.png)
