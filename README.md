@@ -60,7 +60,8 @@ See examples of what **not** to do [here](http://okfnlabs.org/bad-data/).
 
 # the good stuff - pictures
 
-open SQLite Database Browser
+Open SQLite Database Browser
+
 ![](img/2015-03-10_16_07_12.png)
 
 Make a new database - pick a location to save it in.  Use the extension ".sqlite".
@@ -138,7 +139,7 @@ LIMIT
 	10
 ;
 ```
-Notice that SQL is typically written with commands in capital letters to distinguish them from table names, column names, and values that come from the table that you might refer to.
+Notice that SQL is typically written with functions (the commands) in capital letters to distinguish them from table names, column names, and values that come from the table that you might refer to.
 A few tricky things here:
 
 * the order of clauses matters
@@ -149,22 +150,213 @@ A few tricky things here:
 
 ![](img/2015-03-10_16_49_07.png)
 
+Now let's get just **3** project_ids where the recipient country is Cambodia with this code:
+
+```SQL
+SELECT
+	project_id
+FROM
+	projects
+WHERE
+	country = 'Cambodia'
+LIMIT
+	3
+;
+```
+
+Spot the difference?
+Now you know what the LIMIT function does.
+
 ![](img/2015-03-10_16_49_32.png)
+
+How many projects are in this dataset where the recipient country is Cambodia?
+Let's find out using COUNT with this code:
+
+```SQL
+SELECT
+	COUNT(project_id)
+FROM
+	projects
+WHERE
+	country = 'Cambodia'
+;
+```
+
 ![](img/2015-03-10_16_49_51.png)
+
+This table is supposed to have a single row (aka "record") per project.
+Let's make sure that our project_ids in the projects table do not repeat.
+If that were not the case IDs would repeat and our COUNT(project_id) would be higher than our COUNT(DISTINCT(project_id)).
+Let's get the count of unique project_ids with the DISTINCT function:
+
+```SQL
+SELECT
+	COUNT(DISTINCT(project_id))
+FROM
+	projects
+WHERE
+	country = 'Cambodia'
+;
+```
+
+OK it's the same!
+That means there is only one project_id per row.
+
 ![](img/2015-03-10_16_50_09.png)
+
+What about the dates that projects occur?
+Let's limit our query according to projects that started 2001 or after:
+
+```SQL
+SELECT
+	COUNT(DISTINCT(project_id))
+FROM
+	projects
+WHERE
+	country = 'Cambodia'
+	AND start_actual_isodate > '2001-01-01'
+;
+```
+There is a date data type but we didn't use it here.
+We didn't use the date type, but it doesn't matter because we've used ISO dates in the form YYYY-MM-DD so they sort numerically.
+
+There are only 25 projects this time.
+That means that 3 projects had start dates before the date we specified.
+
 ![](img/2015-03-10_16_53_16.png)
+
+What if we added to the WHERE clause by demanding even more constraints?
+Let's ask for everything we did before, but this time add that the status must be "Closed".
+Note that case sensitivity matters, so "Closed" is different from "closed".
+Spelling matters too!
+Computers don't actually understand human speech and writing.
+They only follow the rules you give them.
+OK, let's add that status constraint to our query:
+
+```SQL
+SELECT
+	COUNT(DISTINCT(project_id))
+FROM
+	projects
+WHERE
+	country = 'Cambodia'
+	AND start_actual_isodate > '2001-01-01'
+	AND status = 'Closed'
+;
+```
+
+Only 20 projects this time!
+That means that 5 of the previously selected projects had a status other than Closed.
+
 ![](img/2015-03-10_16_53_46.png)
+
+Let's go for our old constraint **minus** the demand that the recipient be Cambodia.
+Should be lots more projects:
+
+```SQL
+SELECT
+	COUNT(DISTINCT(project_id))
+FROM
+	projects
+WHERE
+	start_actual_isodate > '2001-01-01'
+	AND status = 'Closed'
+;
+```
+
+2344 projects!
+Clearly there are tons of projects outside Cambodia.
+
 ![](img/2015-03-10_16_54_09.png)
+
+Time to add the transactions table so we can really get cooking.
+This will allow us to join information about projects with their transactions, date by date.
+Aid transactions in this case are commitments (promises of money or services) and disbursments (actually giving out those money or services).
+
+Add the transactions table the same way you did the projects table, but give it the name "transactions".
+
 ![](img/2015-03-10_16_55_47.png)
+
+Check out what fields you got in that transactions table.
+
 ![](img/2015-03-10_16_58_20.png)
+
+Browse the data in the transactions table.
+
 ![](img/2015-03-10_16_58_48.png)
+
+Time for your first JOIN!
+It's amazing we've come this far.
+This is where the real power lies.
+Are you excited?
+More importantly, are oyu **ready**??
+Let's find out.
+
+This query will return a single joined transaction_id and its corresponding project_id.
+Remember, there are many transactions per project.
+The kind of relationship is crucial to understanding the implications of your query.
+Kinds of relationships:
+
+* one-to-one
+  * for example, one transaction_id per transactions
+* one-to-many
+  * for example, one project to many transactions
+* many-to-many
+  * for example, many recipients to many donors (each donor can have many recipients, each recipient can have many donors)
+
+The way you build tables in a database, or even just plain text tables like CSV, should be with these relationships in mind.
+Here's our SQL to find one example transaction_id along with its corresponding project_id.
+Note that the join is able to happen because **both** tables have project_id columns.
+
+```SQL
+SELECT
+	projects.project_id,
+	transactions.transaction_id
+FROM
+	projects
+	INNER JOIN transactions
+	ON projects.project_id = transactions.project_id
+LIMIT
+	1
+;
+```
+
 ![](img/2015-03-10_17_05_07.png)
-![](img/2015-03-10_17_06_01.png)
-![](img/2015-03-10_17_15_46.png)
+
+Awesome!
+You did a SQL join.
+This is powerful.
+But let's write that last query a little simpler.
+We'll alias the table names to letters so we don't have to type as much:
+
+```SQL
+SELECT
+	p.project_id,
+	t.transaction_id
+FROM
+	projects as p
+	INNER JOIN transactions as t
+	ON p.project_id = t.project_id
+LIMIT
+	1
+;
+```
+
 ![](img/2015-03-10_17_16_53.png)
-![](img/2015-03-10_17_28_38.png)
-![](img/2015-03-10_17_29_58.png)
-![](img/2015-03-10_17_39_05.png)
+
+Now let's get serious by learning the GROUP BY function.
+Move over Excel.
+
+GROUP BY lets you aggregate your fields according to a field.
+It's kind of like pivot tables in Excel.
+Be sure to include the column you grouped by in your output so you know what you were grouping by!
+For exampe, you can group transaction sums by year.
+You can even GROUP BY multiple columns at once!
+That way you can easily get things like recipient/years given by a donor.
+That would answer questions like these in a single statement: "How much money did every donor give every recipient in every year in the dataset?"
+
+In this example we'll GROUP BY the status column and get counts of Cambodia commitment transactions according to their status.
+This is really brining it all together!
 
 ```SQL
 SELECT
@@ -181,6 +373,21 @@ GROUP BY
 	p.status;
 
 ```
+
+The output tells us that Cambodia recieved $114,500,000 2011 USD from World Bank in commitment transactions for Active projects over the entire dataset, and $436,580,000 USD 2011 for Closed projects.
+One crucial idea is the **scope** of your dataset.
+Our input data is just for the World Bank as a donor, and only for some years!
+Another obvious issue with a column like status is **when** your dataset was compiled!
+If most of the data is from a long time ago you should expect most projects to be Closed.
+This is not a sign that the World Bank has given up on any funding.
+Always keep the scope in mind.
+Good metadata will tell you the scope, when the dataset was made, who made it, what the input data was, and many other crucial concerns.
+
+![](img/2015-03-10_17_28_38.png)
+
+Let's get the same info as before, but just for health sector projects.
+We're going to cheat on this a bit and use the LIKE operator to find sector names that mention the word "health".
+LIKE is actually case sensitive (upper and lower case) but you can potentially use the LOWER() function on the sector column to match more instances of "health".
 
 ```SQL
 SELECT
@@ -198,6 +405,25 @@ GROUP BY
 	p.status;
 ```
 
+Remember, we used LIKE because the sector field is not based on a known list of values.
+It's free text - in other words, a total free for all!
+But LIKE can help get us an **idea** of what's out there.
+The percent signs around "health" mean that any number of any characters can come to the left or the right of the word.
+So examples like "suphealth" and "healthyo" are counted as matches.
+
+Another similar operator is MATCH.
+To get truly precise matches read about the REGEXP operator.
+Remember, other implementations of SQL exist and will have slightly different rules from SQLite.
+
+![](img/2015-03-10_17_29_58.png)
+
+Finally, let's get real.
+Find the project_id, recipient country name, transaction ISO date, and transaction value for the top 10 largest transactions.
+Bonus: is this query limited to just commitment transactions?
+How do you know?
+
+Super bonus: how would you use GROUP BY to modify this query to show the top 10 recipient countries by sum of commitments instead of the top 10 transactions?
+
 ```SQL
 SELECT
 	p.project_id,
@@ -213,6 +439,10 @@ ORDER BY
 	t.transaction_value DESC
 LIMIT 10;
 ```
+
+
+![](img/2015-03-10_17_39_05.png)
+
 
 ## tidbits
 
