@@ -8,7 +8,7 @@ You're about to learn it.
 
 # the wordy part
 
-The basic SQL workflow is:
+The basic SQL work flow is:
 
 1. get a [CSV](https://en.wikipedia.org/wiki/Comma-separated_values), TSV, or other [plain text](https://en.wikipedia.org/wiki/Plain_text) table
 2. make an empty SQL database
@@ -231,6 +231,9 @@ Note that case sensitivity matters, so "Closed" is different from "closed".
 Spelling matters too!
 Computers don't actually understand human speech and writing.
 They only follow the rules you give them.
+
+Bonus: how would you use DISTINCT() to learn the list of unique entries for the status column?
+
 OK, let's add that status constraint to our query:
 
 ```SQL
@@ -271,7 +274,7 @@ Clearly there are tons of projects outside Cambodia.
 
 Time to add the transactions table so we can really get cooking.
 This will allow us to join information about projects with their transactions, date by date.
-Aid transactions in this case are commitments (promises of money or services) and disbursments (actually giving out those money or services).
+Aid transactions in this case are commitments (promises of money or services) and disbursements (actually giving out those money or services).
 
 Add the transactions table the same way you did the projects table, but give it the name "transactions".
 
@@ -289,7 +292,7 @@ Time for your first JOIN!
 It's amazing we've come this far.
 This is where the real power lies.
 Are you excited?
-More importantly, are oyu **ready**??
+More importantly, are you **ready**??
 Let's find out.
 
 This query will return a single joined transaction_id and its corresponding project_id.
@@ -298,7 +301,7 @@ The kind of relationship is crucial to understanding the implications of your qu
 Kinds of relationships:
 
 * one-to-one
-  * for example, one transaction_id per transactions
+  * for example, one transaction_id per transaction
 * one-to-many
   * for example, one project to many transactions
 * many-to-many
@@ -350,7 +353,7 @@ Move over Excel.
 GROUP BY lets you aggregate your fields according to a field.
 It's kind of like pivot tables in Excel.
 Be sure to include the column you grouped by in your output so you know what you were grouping by!
-For exampe, you can group transaction sums by year.
+For example, you can group transaction sums by year.
 You can even GROUP BY multiple columns at once!
 That way you can easily get things like recipient/years given by a donor.
 That would answer questions like these in a single statement: "How much money did every donor give every recipient in every year in the dataset?"
@@ -374,12 +377,14 @@ GROUP BY
 
 ```
 
-The output tells us that Cambodia recieved $114,500,000 2011 USD from World Bank in commitment transactions for Active projects over the entire dataset, and $436,580,000 USD 2011 for Closed projects.
+The output tells us that Cambodia received $114,500,000 USD 2011 from World Bank in commitment transactions for Active projects over the entire dataset, and $436,580,000 USD 2011 for Closed projects.
 One crucial idea is the **scope** of your dataset.
+
 Our input data is just for the World Bank as a donor, and only for some years!
 Another obvious issue with a column like status is **when** your dataset was compiled!
 If most of the data is from a long time ago you should expect most projects to be Closed.
 This is not a sign that the World Bank has given up on any funding.
+
 Always keep the scope in mind.
 Good metadata will tell you the scope, when the dataset was made, who made it, what the input data was, and many other crucial concerns.
 
